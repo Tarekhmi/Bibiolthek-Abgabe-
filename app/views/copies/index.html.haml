@@ -1,0 +1,13 @@
+%h2 Exemplare
+%table.table
+  %thead
+    %tr
+      %th Buch
+      %th Signatur
+      %th Erwerbsdatum
+  %tbody
+    - @copies.each do |c|
+      %tr
+        %td= c.book.title
+        %td= c.signature
+        %td= c.acquired_at

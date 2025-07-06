@@ -1,0 +1,11 @@
+%h2 Nutzer:innen
+%table.table
+  %thead
+    %tr
+      %th E-Mail
+      %th Admin
+  %tbody
+    - @users.each do |u|
+      %tr
+        %td= u.email
+        %td= u.admin? ? '✔️' : ''

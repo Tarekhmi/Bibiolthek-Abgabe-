@@ -1,0 +1,11 @@
+%h2 Bücher
+%table.table
+  %thead
+    %tr
+      %th Titel
+      %th Autor
+  %tbody
+    - @books.each do |b|
+      %tr
+        %td= b.title
+        %td= b.author&.family_name

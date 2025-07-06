@@ -1,0 +1,11 @@
+%h2 Autoren
+%table.table
+  %thead
+    %tr
+      %th Vorname
+      %th Nachname
+  %tbody
+    - @authors.each do |a|
+      %tr
+        %td= a.given_name
+        %td= a.family_name

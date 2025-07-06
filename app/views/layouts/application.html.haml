@@ -1,0 +1,41 @@
+!!!
+%html
+  %head
+    %title Fachbibliothek
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag "application.bootstrap", "data-turbo-track": "reload"
+    = javascript_importmap_tags
+
+  %body{ style: "margin:0; padding:0;" }
+    %header{ style: "background:#800000; color:white; padding:0.2em;" }
+      %h2{ style: "margin:0.2em;" } Fachbibliothek - Hauptnavigation
+      %div{ style: "clear:both;" }
+
+    .container-fluid
+      .row
+        %aside.col-2{ style: "background:#eef; padding:0.5em;" }
+          %nav
+            %h6 Autor(inn)en
+            = link_to 'Alle Autoren', authors_path
+            %br
+            = link_to 'Ohne Bücher', authors_path(filter: 'no_books')
+            %hr
+            %h6 Bücher
+            = link_to 'Alle Bücher', books_path
+            %br
+            = link_to 'Neues Buch', new_book_path if defined?(current_user) && current_user.admin?
+            %hr
+            %h6 Buchexemplare
+            = link_to 'Gesamtbestand', copies_path
+            %hr
+            %h6 Benutzer:innen
+            = link_to 'Alle Nutzer:innen', users_path
+        %main.col-10{ style: "padding:1em;" }
+          - if defined?(current_user) && current_user
+            %div{ style: "float:right; background:#cde; padding:0.5em; border:1px solid #abc;" }
+              Angemeldet als
+              %strong= current_user.email
+              %br
+              = button_to 'Logout', logout_path, method: :delete, class: 'btn btn-outline-secondary btn-sm mt-2'
+          = yield
